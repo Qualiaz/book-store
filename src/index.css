@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-light-primary {
+    @apply bg-light-primary text-light-neutral py-2 px-4 rounded font-bold;
+  }
+  .btn-light-primary:hover {
+    @apply brightness-110;
+  }
+
+  .btn-dark-primary {
+    @apply bg-dark-primary text-dark-neutral py-2 px-4 rounded font-bold;
+  }
+}
