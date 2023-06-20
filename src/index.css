@@ -14,3 +14,17 @@
     @apply bg-dark-primary text-dark-neutral py-2 px-4 rounded font-bold;
   }
 }
+
+.book-genres::-webkit-scrollbar {
+  display: none;
+}
+
+.book-genres {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html {
+  height: 100%;
+  background-color: #f7f7f8;
+}
