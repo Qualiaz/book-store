@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
+import useFetchBook from "../hooks/useFetchBook";
 
 const Book = () => {
   const { id } = useParams();
+  const { book, loading, error } = useFetchBook(id);
+  const location = useLocation();
+  const author = location.state?.author;
+  const imageSrc = location.state?.imageSrc;
+  const title = location.state?.title;
 
-  const [book, setBook] = useState(null);
-
-  console.log(id);
-  console.log("ok");
-
-  useEffect(() => {
-    async function fetchBook() {
-      const bookUrl = `https://openlibrary.org/books/${id}.json`;
-      const bookResponse = await fetch(bookUrl);
-      const bookData = await bookResponse.json();
-      setBook(bookData);
-    }
-    fetchBook();
-  }, [id]);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="bg-light-accent w-10 h-20">
-      {!book && <div>Book</div>}
-      hello there {id}
+    <div className="flex flex-col bg-light-accent">
+      {book && (
+        <>
+          <div>author: {author}</div>
+          <div>title: {title}</div>
+          <div>image: {imageSrc}</div>
+          <div>pages: {book.pages}</div>
+          <div>description: {book.description}</div>
+        </>
+      )}
     </div>
   );
 };

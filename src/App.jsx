@@ -6,6 +6,8 @@ import MainLayout from "./Layouts/MainLayout";
 import Book from "./pages/Book";
 import Books from "./pages/Books";
 
+import React from "react";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
               <Route path="/books/art" element={<Books genre="art" />} />
               <Route path="/books/crime" element={<Books genre="crime" />} />
               <Route path="/books/classical" element={<Books genre="classic" />} />
+              
               <Route path="/book/:id" element={<Book />} />
             </Routes>
           </MainLayout>

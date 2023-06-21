@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLazyImage from "../hooks/useLazyImage";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion, useAnimation } from "framer-motion";
 import useTurnIdIntoPrice from "../hooks/useTurnIdIntoPrice";
 
@@ -11,7 +10,7 @@ const BookCard = ({ id, title, cover, author }) => {
   const imageSrc = useLazyImage(imageRef, cover);
   const controls = useAnimation();
   const [ron, bani] = useTurnIdIntoPrice(id);
-  console.log(id);
+
   const handleHoverStart = () => {
     controls.start({
       height: "auto",
@@ -33,9 +32,16 @@ const BookCard = ({ id, title, cover, author }) => {
       className="relative h-110 w-48 cursor-pointer card-shadow bg-light-base-100 p-3 rounded-sm outline outline-1 outline-black"
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
-      onClick={() => navigate(`/book/${id}`)}
+      onClick={() =>
+        navigate(`/book/${id}`, { state: { author, imageSrc, title } })
+      }
     >
-      <img ref={imageRef} src={imageSrc} alt="cover image" className="h-72" />
+      <img
+        ref={imageRef}
+        src={imageSrc}
+        alt="cover image"
+        className="h-72 rounded-md"
+      />
       <div className="absolute bottom-14 w-40 ml-1 overflow-hidden">
         <motion.div
           initial={{ height: "1.5rem" }}
