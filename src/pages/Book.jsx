@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Book = () => {
@@ -6,7 +6,8 @@ const Book = () => {
 
   const [book, setBook] = useState(null);
 
-  console.log("hey");
+  console.log(id);
+  console.log("ok");
 
   useEffect(() => {
     async function fetchBook() {
@@ -19,9 +20,9 @@ const Book = () => {
   }, [id]);
 
   return (
-    <div className="bg-red-700 w-10 h-20">
+    <div className="bg-light-accent w-10 h-20">
       {!book && <div>Book</div>}
-      {id}
+      hello there {id}
     </div>
   );
 };

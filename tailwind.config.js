@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+//prettier-ignore
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      height: {
+        "110": "25.5rem",
+      },
       colors: {
         light: {
           primary: "#e2ce31",

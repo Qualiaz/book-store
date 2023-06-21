@@ -16,9 +16,11 @@ const Books = ({ genre }) => {
       },
       { threshold: 1 }
     );
+
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
     }
+
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage]);
 
@@ -33,15 +35,19 @@ const Books = ({ genre }) => {
   const books = data.pages.flat();
 
   return (
-    <div>
+    <>
       {books.map((book, i) => (
         <div key={i}>
-          <BookCard title={book.title} cover={book.coverUrl} id={book.id} />
-          <div>Author: {book.author}</div>
+          <BookCard
+            title={book.title}
+            cover={book.coverUrl}
+            id={book.id}
+            author={book.author}
+          />
         </div>
       ))}
       <div ref={loaderRef} />
-    </div>
+    </>
   );
 };
 

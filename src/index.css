@@ -6,6 +6,7 @@
   .btn-light-primary {
     @apply bg-light-primary text-light-neutral py-2 px-4 rounded font-bold;
   }
+
   .btn-light-primary:hover {
     @apply brightness-110;
   }
@@ -13,15 +14,19 @@
   .btn-dark-primary {
     @apply bg-dark-primary text-dark-neutral py-2 px-4 rounded font-bold;
   }
-}
 
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
-}
+  .card-shadow {
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+  }
 
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 html {

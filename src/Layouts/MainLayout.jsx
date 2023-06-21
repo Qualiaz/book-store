@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-const mainLayout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
-    <main className="bg-blue-500 h-full">
-      <div className="flex flex-wrap gap-3 h-96"></div>
+    <main className=" flex p-10">
+      <div className="flex flex-wrap justify-center gap-12">{children}</div>
     </main>
   );
 };
 
-export default mainLayout;
+export default MainLayout;
