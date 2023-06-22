@@ -1,14 +1,31 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formattedQuery = query.trim().replace(/\s+/g, "+");
+    navigate(`/results?search=${formattedQuery}`);
+  };
+
   return (
     <header className="flex flex-col py-5 px-10 gap-5">
       <div className="flex justify-between gap-3 bg-light-primary outline ">
         <div className="flex">
           <div className="w-3/5 bg-light-primary outline">
-            <input type="text" className="w-full bg-light-primary outline" />
+            <input
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
+              type="text"
+              className="w-full bg-light-primary outline"
+            />
           </div>
-          <div className="min-w-fit bg-light-primary">search btn</div>
+          <div className="min-w-fit bg-light-primary">
+            <button onClick={handleSubmit}>search</button>
+          </div>
         </div>
         <div className="outline bg-light-primary">cart</div>
       </div>

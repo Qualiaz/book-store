@@ -1,10 +1,15 @@
-import { useEffect, useRef } from "react";
-import useInfiniteBooksBySubject from "../hooks/useInfiniteBooksBySubject";
+import React, { useRef, useEffect } from "react";
+import {
+  useInfiniteBooksBySubject,
+  useInfiniteBooksBySearch,
+} from "../hooks/useInfiniteBooksBy";
 import BookCard from "../components/BookCard";
 
-const Books = ({ genre }) => {
-  const { data, isLoading, isError, error, fetchNextPage, hasNextPage } =
-    useInfiniteBooksBySubject(genre);
+const Books = ({ genre, search }) => {
+  const { data, isLoading, isError, error, fetchNextPage, hasNextPage } = genre
+    ? useInfiniteBooksBySubject(genre)
+    : useInfiniteBooksBySearch(search);
+
   const loaderRef = useRef(null);
 
   useEffect(() => {
@@ -16,11 +21,9 @@ const Books = ({ genre }) => {
       },
       { threshold: 1 }
     );
-
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
     }
-
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage]);
 
@@ -32,7 +35,12 @@ const Books = ({ genre }) => {
     return <div>Error: {error.message}</div>;
   }
 
-  const books = data.pages.flat();
+  const booksWithDuplicates = data.pages.flat();
+  const books = Array.from(new Set(booksWithDuplicates.map((a) => a.key))).map(
+    (key) => {
+      return booksWithDuplicates.find((a) => a.key === key);
+    }
+  );
 
   return (
     <>
@@ -41,7 +49,7 @@ const Books = ({ genre }) => {
           <BookCard
             title={book.title}
             cover={book.coverUrl}
-            id={book.id}
+            id={book.key}
             author={book.author}
           />
         </div>

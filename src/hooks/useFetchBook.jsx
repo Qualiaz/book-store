@@ -9,13 +9,16 @@ export default function useFetchBook(id) {
     (async () => {
       try {
         const response = await fetch(
-          `https://openlibrary.org/books/${id}.json`
+          `https://api.allorigins.win/raw?url=https://openlibrary.org/books/${id}.json`
         );
         const data = await response.json();
+        console.log(data);
         setBook({
           name: data.title,
-          pages: data.number_of_pages ? data.number_of_pages : "N/A",
-          description: data.description ? data.description.value : "N/A",
+          pages: data.number_of_pages || "N/A",
+          description: data.description || "N/A",
+          format: data.physical_format || "N/A",
+          publishDate: data.publish_date || "N/A",
         });
       } catch (err) {
         setError(err.message);
