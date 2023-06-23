@@ -9,7 +9,7 @@ export default {
       },
       colors: {
         light: {
-          primary: "#e2ce31",
+          primary: "#bcfc92",
           secondary: "#e879f9",
           accent: "#92cee5",
           neutral: "#19191f",
@@ -20,7 +20,7 @@ export default {
           error: "#e66756",
         },
         dark: {
-          primary: "#e2ce31",
+          primary: "#bcfc92",
           secondary: "#e879f9",
           accent: "#92cee5",
           neutral: "#19191f",

@@ -33,7 +33,9 @@ const BookCard = ({ id, title, cover, author }) => {
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
       onClick={() =>
-        navigate(`/book/${id}`, { state: { author, imageSrc, title } })
+        navigate(`/book/${id}`, {
+          state: { author, imageSrc, title, price: [ron, bani] },
+        })
       }
     >
       <img
